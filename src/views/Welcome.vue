@@ -1,9 +1,13 @@
 <template>
   <h1 class="welcome container">welcome to chat room app</h1>
+  <SignupForm />
 </template>
 
 <script>
-export default {};
+import SignupForm from "../components/SignupForm.vue";
+export default {
+  components: { SignupForm },
+};
 </script>
 
 <style>

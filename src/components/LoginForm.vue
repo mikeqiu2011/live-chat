@@ -17,13 +17,11 @@
 <script>
 import { ref } from "@vue/reactivity";
 import { useSignIn } from "../composibles/useSignIn";
-import { useRouter } from "vue-router";
 
 export default {
   setup(props, context) {
     const email = ref("");
     const password = ref("");
-    const router = useRouter();
 
     const { error, signIn } = useSignIn();
 

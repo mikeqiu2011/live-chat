@@ -1,23 +1,16 @@
 <template>
-  <div class="signup">
-    <form @submit.prevent="handleSubmit">
-      <input
-        type="text"
-        placeholder="display name"
-        required
-        v-model="displayName"
-      />
-      <input type="email" placeholder="email" required v-model="email" />
-      <input
-        type="password"
-        placeholder="password"
-        required
-        v-model="password"
-      />
-      <button>submit</button>
-      <!-- password is {{ password }} -->
-    </form>
-  </div>
+  <form @submit.prevent="handleSubmit">
+    <input
+      type="text"
+      placeholder="display name"
+      required
+      v-model="displayName"
+    />
+    <input type="email" placeholder="email" required v-model="email" />
+    <input type="password" placeholder="password" required v-model="password" />
+    <button>Sign up</button>
+    <!-- password is {{ password }} -->
+  </form>
 </template>
 
 <script>

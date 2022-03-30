@@ -1,5 +1,4 @@
 <template>
-  <div v-if="error">{{ error }}</div>
   <form @submit.prevent="handleSubmit">
     <input
       type="text"
@@ -9,6 +8,7 @@
     />
     <input type="email" placeholder="email" required v-model="email" />
     <input type="password" placeholder="password" required v-model="password" />
+    <div class="error">{{ error }}</div>
     <button>Sign up</button>
     <!-- password is {{ password }} -->
   </form>

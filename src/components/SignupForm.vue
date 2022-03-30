@@ -1,4 +1,5 @@
 <template>
+  <div v-if="error">{{ error }}</div>
   <form @submit.prevent="handleSubmit">
     <input
       type="text"
@@ -15,17 +16,23 @@
 
 <script>
 import { ref } from "@vue/reactivity";
+import { useSignup } from "../composibles/useSignup";
+
 export default {
   setup() {
     const displayName = ref("");
     const email = ref("");
     const password = ref("");
 
-    const handleSubmit = () => {
+    const { error, signUp } = useSignup();
+
+    const handleSubmit = async () => {
       console.log(displayName.value, email.value, password.value);
+      await signUp(email.value, password.value, displayName.value);
+      console.log("user signed up");
     };
 
-    return { displayName, email, password, handleSubmit };
+    return { displayName, email, password, handleSubmit, error };
   },
 };
 </script>

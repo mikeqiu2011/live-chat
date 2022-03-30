@@ -65,5 +65,7 @@ export default {
 .welcome span {
   cursor: pointer;
   color: orange;
+  font-weight: bold;
+  text-decoration: underline;
 }
 </style>

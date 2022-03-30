@@ -4,6 +4,10 @@
     <div v-if="showSignup">
       <h2>Sign up new account</h2>
       <SignupForm />
+      <p>
+        already have an account?
+        <span @click="showSignup = false">Log in</span> instead
+      </p>
     </div>
     <div v-else>
       <h2>Login</h2>

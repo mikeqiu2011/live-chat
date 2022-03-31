@@ -23,7 +23,7 @@ export default {
       if (!error.value) {
         console.log("successfully logged out");
       }
-      context.emit("logout");
+      //   context.emit("logout");
     };
 
     return { handleLogout, error, user };

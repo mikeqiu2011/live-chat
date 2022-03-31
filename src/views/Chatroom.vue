@@ -1,20 +1,22 @@
 <template>
   <div class="container">
-    <Navbar @logout="handleLogout" />
+    <Navbar />
   </div>
 </template>
 
 <script>
 import { useRouter } from "vue-router";
 import Navbar from "../components/Navbar.vue";
+import { auth } from "../firebase/config";
 export default {
   setup() {
     const router = useRouter();
-    const handleLogout = () => {
-      router.push({ name: "Welcome" });
-    };
 
-    return { handleLogout };
+    auth.onAuthStateChanged((user) => {
+      if (!user) {
+        router.push({ name: "Welcome" });
+      }
+    });
   },
   components: { Navbar },
 };

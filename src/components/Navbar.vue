@@ -14,7 +14,7 @@ import { useLogout } from "../composibles/useLogout";
 import { getUser } from "../composibles/getUser";
 
 export default {
-  setup() {
+  setup(props, context) {
     const { error, logout } = useLogout();
     const user = getUser();
     const handleLogout = async () => {
@@ -23,6 +23,7 @@ export default {
       if (!error.value) {
         console.log("successfully logged out");
       }
+      context.emit("logout");
     };
 
     return { handleLogout, error, user };

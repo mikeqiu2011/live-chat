@@ -5,6 +5,7 @@
       v-model="message"
       @keypress.enter.prevent="handleSend"
     ></textarea>
+    <div class="error">{{ error }}</div>
   </form>
 </template>
 
@@ -12,10 +13,12 @@
 import { ref } from "@vue/reactivity";
 import { timestamp, db } from "../firebase/config";
 import { getUser } from "../composibles/getUser";
+import { useCollection } from "../composibles/useCollection";
 export default {
   setup() {
     const message = ref("");
     const user = getUser(); // shall not use {user}
+    const { error, addDoc } = useCollection("message");
 
     const handleSend = async () => {
       const chat = {
@@ -23,16 +26,16 @@ export default {
         name: user.value.displayName,
         createdAt: timestamp(),
       };
-      console.log("chat is: ", chat);
-      try {
-        await db.collection("message").add(chat);
+
+      await addDoc(chat);
+
+      if (!error.value) {
         message.value = "";
-      } catch (error) {
-        console.log(error);
+        console.log("message sent");
       }
     };
 
-    return { handleSend, message };
+    return { handleSend, message, error };
   },
 };
 </script>

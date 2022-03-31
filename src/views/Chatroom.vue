@@ -1,12 +1,14 @@
 <template>
   <div class="container">
     <Navbar />
+    <NewChatForm />
   </div>
 </template>
 
 <script>
 import { useRouter } from "vue-router";
 import Navbar from "../components/Navbar.vue";
+import NewChatForm from "../components/NewChatForm.vue";
 import { auth } from "../firebase/config";
 export default {
   setup() {
@@ -18,7 +20,7 @@ export default {
       }
     });
   },
-  components: { Navbar },
+  components: { Navbar, NewChatForm },
 };
 </script>
 

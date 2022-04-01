@@ -16,18 +16,24 @@ const useCollection = (collection) => {
     }
 
 
-    db.collection(collection)
-        .orderBy("createdAt", "desc")
-        .onSnapshot((snap) => {
-            docs.value = snap.docs.map(doc => {
-                return { ...doc.data(), id: doc.id }
-            })
-            error.value = null
-        }, (err) => {
-            console.log(err);
-            docs.value = null
-            error.value = err.message
+    let colRef = db.collection(collection)
+        .orderBy("createdAt")
+
+    colRef.onSnapshot((snap) => {
+        let result = []
+        snap.docs.forEach(doc => {
+            // must wait for the server to create the timestamp & send it back
+            // we don't want to edit data until it has done this
+            doc.data().createdAt && result.push({ ...doc.data(), id: doc.id })
         })
+
+        docs.value = result
+        error.value = null
+    }, (err) => {
+        console.log(err);
+        docs.value = null
+        error.value = err.message
+    })
 
 
 

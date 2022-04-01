@@ -10,3 +10,9 @@ nav {
   justify-content: space-between;
   align-items: center;
 }
+
+## init firebase deploy
+    export http_proxy="http://127.0.0.1:1087"
+    firebase init
+
+

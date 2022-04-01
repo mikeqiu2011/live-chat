@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <Navbar />
-    <NewChatForm />
     <ChatWindow />
+    <NewChatForm />
   </div>
 </template>
 

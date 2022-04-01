@@ -15,17 +15,24 @@ const useCollection = (collection) => {
         }
     }
 
-    const getRealtime = () => {
-        db.collection(collection)
-            .orderBy("createdAt", "desc")
-            .onSnapshot((snap) => {
-                docs.value = snap.docs.map(doc => {
-                    return { ...doc.data(), id: doc.id }
-                })
-            })
-    }
 
-    return { error, addDoc, getRealtime, docs }
+    db.collection(collection)
+        .orderBy("createdAt", "desc")
+        .onSnapshot((snap) => {
+            docs.value = snap.docs.map(doc => {
+                return { ...doc.data(), id: doc.id }
+            })
+            error.value = null
+        }, (err) => {
+            console.log(err);
+            docs.value = null
+            error.value = err.message
+        })
+
+
+
+
+    return { error, addDoc, docs }
 }
 
 export { useCollection }

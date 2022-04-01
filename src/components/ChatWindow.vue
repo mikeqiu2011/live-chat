@@ -8,9 +8,7 @@
 import { useCollection } from "../composibles/useCollection";
 export default {
   setup() {
-    const { docs, error, getRealtime } = useCollection("message");
-
-    getRealtime();
+    const { docs, error } = useCollection("message");
 
     return { docs, error };
   },

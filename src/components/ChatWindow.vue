@@ -3,7 +3,7 @@
   <div class="messages" v-if="docs">
     <div v-for="doc in formatedDocuments" :key="doc.id" class="single">
       <span class="created-at">{{ doc.createdAt }}</span>
-      <span class="name">{{ doc.name }}</span>
+      <span class="name">{{ doc.name }}:</span>
       <span class="message">{{ doc.message }}</span>
     </div>
   </div>
@@ -12,7 +12,7 @@
 <script>
 import { useCollection } from "../composibles/useCollection";
 import { formatDistanceToNow } from "date-fns";
-import { computed } from "@vue/runtime-core";
+import { computed, onUpdated } from "@vue/runtime-core";
 export default {
   setup() {
     const { docs, error } = useCollection("message");
@@ -25,6 +25,10 @@ export default {
         });
       }
     });
+
+    // onUpdated(() => {
+    //   console.log("chat window updated");
+    // });
 
     return { docs, error, formatedDocuments };
   },

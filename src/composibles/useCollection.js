@@ -1,4 +1,4 @@
-import { ref } from "vue"
+import { ref, watchEffect } from "vue"
 import { db } from "../firebase/config"
 
 const useCollection = (collection) => {
@@ -19,7 +19,8 @@ const useCollection = (collection) => {
     let colRef = db.collection(collection)
         .orderBy("createdAt")
 
-    colRef.onSnapshot((snap) => {
+    const unsub = colRef.onSnapshot((snap) => {
+        console.log('snapshot');
         let result = []
         snap.docs.forEach(doc => {
             // must wait for the server to create the timestamp & send it back
@@ -36,7 +37,13 @@ const useCollection = (collection) => {
     })
 
 
-
+    watchEffect((onInvalidate) => {
+        //unsubscribe from prev collection when watcher is stopped (component unmount)
+        onInvalidate(() => {
+            unsub()
+            console.log('unsubscribed');
+        })
+    })
 
     return { error, addDoc, docs }
 }

@@ -11,14 +11,24 @@ const requireAuth = (to, from, next) => {
     next({ name: 'Welcome' })
   }
   next()
+}
 
+//welcome auth guard
+const welcomeAuth = (to, from, next) => {
+  let user = auth.currentUser
+  // console.log("current user in auth guard: ", user);
+  if (user) {
+    next({ name: 'Chatroom' })
+  }
+  next()
 }
 
 const routes = [
   {
     path: '/',
     name: 'Welcome',
-    component: Welcome
+    component: Welcome,
+    beforeEnter: welcomeAuth
   },
   {
     path: '/chatroom',

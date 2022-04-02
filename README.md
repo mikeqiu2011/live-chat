@@ -23,3 +23,6 @@ nav {
 
 ## rebuild and deploy
     npm run build && firebase deploy
+
+## deploy firestore rule
+    firebase deploy --only firestore:rules

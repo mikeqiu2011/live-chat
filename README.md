@@ -15,4 +15,11 @@ nav {
     export http_proxy="http://127.0.0.1:1087"
     firebase init
 
+## build vue app
+    npm run build
 
+## deploy to firebase
+    firebase deploy
+
+## rebuild and deploy
+    npm run build && firebase deploy

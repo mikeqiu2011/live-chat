@@ -2,7 +2,7 @@
   <div class="welcome container">
     <p>welcome</p>
     <div v-if="showSignup">
-      <h2>Sign up new account</h2>
+      <h2>Sign up the chatroom</h2>
       <SignupForm @signedup="enterChat" />
       <p>
         already have an account?
@@ -10,7 +10,7 @@
       </p>
     </div>
     <div v-else>
-      <h2>Login</h2>
+      <h2>Login to the chatroom</h2>
       <LoginForm @login="enterChat" />
       <p>
         No account yet?

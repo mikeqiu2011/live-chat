@@ -26,3 +26,9 @@ nav {
 
 ## deploy firestore rule
     firebase deploy --only firestore:rules
+
+## secure your API key
+    https://console.cloud.google.com/apis/dashboard?project=udemy-vue-firebase-sites-a263f
+
+    left hand bar -> credential -> API keys -> http referrers (web sites)
+    -> website restrictions -> new Item -> *.firebaseapp.com
